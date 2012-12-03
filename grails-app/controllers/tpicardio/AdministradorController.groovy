@@ -30,6 +30,7 @@ class AdministradorController {
 		def entrenadorInstanceList = new ArrayList<Entrenador>()
 		def imagenInstanceList = new ArrayList<Imagen>()
 		def cursosInstanceList = new ArrayList<Cursos>()
+		def imagenCarrouselInstanceList = new ArrayList<ImagenCarrousel>()
 		try{
 			usuarioInstanceList = Usuario.list(params)
 		}catch(Exception e){
@@ -56,8 +57,14 @@ class AdministradorController {
 		}catch(Exception e){
 			imagenInstanceList = Imagen.findAllByTipoPerfil(true)
 		}
+		try{
+			imagenCarrouselInstanceList = ImagenCarrousel.list(params)
+		}catch(Exception e){
+			imagenCarrouselInstanceList = ImagenCarrousel.findAll()
+		}
 		[administradorInstance: administradorInstance,usuarioInstanceList: usuarioInstanceList,	entrenadorInstanceList: entrenadorInstanceList,cursosInstanceList: cursosInstanceList,
-		imagenInstanceList: imagenInstanceList,usuarioInstanceTotal: Usuario.count(), imagenInstanceTotal: Imagen.count(),entrenadorInstanceTotal: Entrenador.count(),cursosInstanceTotal: Cursos.count()]
+		imagenInstanceList: imagenInstanceList,usuarioInstanceTotal: Usuario.count(), imagenInstanceTotal: Imagen.count(),entrenadorInstanceTotal: Entrenador.count(),
+		cursosInstanceTotal: Cursos.count(), imagenCarrouselInstanceList: imagenCarrouselInstanceList, imagenCarrouselInstanceTotal: ImagenCarrousel.count()]
 	}
 	@Secured(['ROLE_ADMIN'])
     def create() {

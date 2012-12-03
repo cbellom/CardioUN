@@ -43,10 +43,18 @@
 					<div class="accordion-group">
 						<div class="accordion-heading">
 							<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion" href="#imageList">
-							Lista de imagenes predeterminadas 
+							Lista de imagenes predeterminadas Perfil
 							</a>
 						</div>	
 						<g:render template="/layouts/listaImagenesPerfil"/>			    
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion" href="#imageCarrouselList">
+							Lista de imagenes de la pagina Inicio
+							</a>
+						</div>	
+						<g:render template="/layouts/listaImagenesCarrousel"/>			    
 					</div>
 					<div class="accordion-group">
 						<div class="accordion-heading">

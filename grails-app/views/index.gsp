@@ -1,4 +1,5 @@
 <%@ page import="tpicardio.Tip" %>
+<%@ page import="tpicardio.ImagenCarrousel" %>
 <%@ page import="tpicardio.Cursos" %>
 <!doctype html>
 <html>
@@ -15,34 +16,26 @@
 		<div class="row-fluid">			
 				<div id="myCarousel" class="carousel slide">
 					<div class = "carousel-inner">
-						<div class="active item">
-							<img style="width:1170px; height:450px;" src="${resource(dir:'images/cardio',file:'SAM_0833.JPG')}" />
-							<div class="carousel-caption">
-			                    <h4>Ubicación</h4>
-			                    <p style="color: white;">Ubicado en el segundo piso del polideportivo, Universidad Nacional de Colombia</p>
-		                    </div>
-						</div>
-						<div class="item">
-							<img style="width:1170px; height:450px;" src="${resource(dir:'images/cardio',file:'SAM_0837.JPG')}">							
-							<div class="carousel-caption">
-			                    <h4>Instalaciones</h4>
-			                    <p style="color: white;">Excelente ambiente en nuestras instalaciones </p>
-		                    </div>
-		                </div>
-						<div class="item">
-							<img style="width:1170px; height:450px;" src="${resource(dir:'images/cardio',file:'SAM_0810.JPG')}" />
-							<div class="carousel-caption">
-			                    <h4>Maquinaria</h4>
-			                    <p style="color: white;">Podras encontrar diferentes tipos de máquinas</p>
-		                    </div>
-						</div>
-						<div class="item">
-							<img style="width:1170px; height:450px;" src="${resource(dir:'images/cardio',file:'SAM_0802.JPG')}" />
-							<div class="carousel-caption">
-			                    <h4>y mas...</h4>
-			                    <p style="color: white;">...</p>
-		                    </div>
-						</div>
+						<g:each in="${ImagenCarrousel.list()}" var="imagenInstance">
+							<g:if test="${imagenInstance.id == ImagenCarrousel.get(1)?.id}">
+								<div class="active item">
+									<img style="width:1170px; height:450px;" src="${createLink(controller:'imagen', action:'show', id:imagenInstance?.imagen.id) }">
+									<div class="carousel-caption">
+					                    <h4>${imagenInstance?.titulo}</h4>
+					                    <p style="color: white;">${imagenInstance?.descripcion}</p>
+				                    </div>
+								</div>									
+							</g:if>		
+							<g:else>
+								<div class="item">
+									<img style="width:1170px; height:450px;" src="${createLink(controller:'imagen', action:'show', id:imagenInstance?.imagen.id) }">
+									<div class="carousel-caption">
+					                    <h4>${imagenInstance?.titulo}</h4>
+					                    <p style="color: white;">${imagenInstance?.descripcion}</p>
+				                    </div>
+								</div>
+							</g:else>												
+						</g:each>	
 					</div>
 					<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 					<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>						

@@ -209,4 +209,6 @@ class ImagenController {
 		response.outputStream << imagen.archivo
 	}
 	
+	
+	
 }

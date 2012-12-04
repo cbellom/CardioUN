@@ -15,7 +15,7 @@ class Maquina implements Serializable{
 
     static constraints = {
 		observacion(maxSize:10000)
-        estado(inList: estados)
+        estado(inList: estados, blank:false)
 		tipo(inList: tipos)
     }
     static String estado_funcionando = "funcionando"

@@ -16,7 +16,8 @@ class MaquinaController {
 		return User.get(springSecurityService.principal.id)
 	}
     def list() {
-		def listaMaquina = Maquina.list(params)
+		
+		def listaMaquina = Maquina.list(params)		
 		def listaMaquinaTipo = new ArrayList<ArrayList<Maquina>>()
 		for(int i=0;i<listaMaquina.size;i++){
 			if(listaMaquinaTipo.isEmpty()){
@@ -148,4 +149,45 @@ class MaquinaController {
             redirect action: 'show', id: params.id
         }
     }
+	
+	def crearEstado(){
+		String estado = params.estado
+		if(estado=="" || estado.charAt(0)==" "){
+			flash.message ="El estado ingresado no es válido, puede que este vacio o que inicia con un espacio"
+			redirect controller:'entrenador', action: 'perfilEntrenador'
+			return
+		}
+		Maquina.estados.add(estado)
+		flash.message ="Nuevo estado agregado"
+		redirect controller:'entrenador', action: 'perfilEntrenador'
+		return
+	}
+	
+	def eliminarEstado(){
+		Maquina.estados.remove(params.estado)
+		flash.message ="Estado de Maquinas eliminado"
+		redirect controller:'entrenador', action: 'perfilEntrenador'
+		return
+	}
+	
+	def crearTipo(){
+		String tipo = params.tipo
+		if(tipo=="" || tipo.charAt(0)==" "){
+			flash.message ="El tipo ingresado no es válido, puede que este vacio o que inicia con un espacio"
+			redirect controller:'entrenador', action: 'perfilEntrenador'
+			return
+		}
+		Maquina.tipos.add(tipo)
+		flash.message ="Nuevo Tipo agregado"
+		redirect controller:'entrenador', action: 'perfilEntrenador'
+		return
+	}
+	
+	def eliminarTipo(){
+		Maquina.tipos.remove(params.tipo)
+		flash.message ="Tipo de Maquinas eliminado"
+		redirect controller:'entrenador', action: 'perfilEntrenador'
+		return
+	}
+	
 }

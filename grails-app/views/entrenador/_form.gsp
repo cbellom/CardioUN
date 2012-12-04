@@ -17,7 +17,7 @@
 			<g:message code="entrenador.cedula.label" default="Cedula" />
 		</label>
 		<div class="controls">
-			<g:field name="cedula" type="number" value="${entrenadorInstance.cedula}" required=""/>
+			<g:field name="cedula" type="number" value="${entrenadorInstance.cedula}" required="" min="1000000" max="99999999999"/>
 		</div>					
 	</div>
 </div>	
